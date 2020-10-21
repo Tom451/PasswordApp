@@ -1,7 +1,7 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import com.*;
 
 public class PasswordApp extends JFrame {
 
@@ -13,6 +13,13 @@ public class PasswordApp extends JFrame {
     private JLabel passwordPageHeader;
     private JButton enterButton;
     private JButton cancelButton;
+    private JPanel tabPasswordHasher;
+    private JSpinner spinner1;
+    private JLabel lblHash;
+    private JPasswordField passwordCipherEnter;
+    private JButton enterButtonCipher;
+    private JTextField userEntryCipher;
+    private JLabel passwordInputLabel;
     private JTabbedPane tabbedMainPanel;
 
     //getters and setters for main panel
@@ -42,10 +49,27 @@ public class PasswordApp extends JFrame {
 
                 passwordCheck(getPasswordInput());
 
+            }
+        });
 
+        enterButtonCipher.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                passwordHasher(userEntryCipher.getText(), (int) spinner1.getValue());
             }
         });
     }
+
+    public void passwordHasher(String Input, int CipherSelect){
+
+        passwordInputLabel.setText(cipher.encrypt(Input, CipherSelect ).toString());
+
+
+
+    }
+
+
+
 
     public void passwordCheck(String input){
 
